@@ -35,9 +35,13 @@ jobs:
         # NOTE: `since_last_remote_commit: true` is implied by default and falls back to the previous local commit.
         - name: List all changed files
           run: |
+            $GITHUB_TESTCLASS = ''
             for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-              echo "$file was changed"
+              if [[ $file =~ "_Test" ]]; then
+                echo "$file" >> $GITHUB_TESTCLASS
+              fi
             done
+            echo $GITHUB_TESTCLASS
 
   deployment:
     name: Deployment section
