@@ -10,16 +10,18 @@ on:
 
 jobs:
   test:
-    name: Test
+    name: Test section
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
     - run: echo "🐧 GitHub Action running on ${{ runner.os }}"
     - run: echo "🔎 Retrieving ${{ github.ref }} from ${{ github.repository }}."
     - run: npm install sfdx-cli -g 
+    - uses: legetz/setup-pmd@v6.48
+    - run: pmd -language apex --dir . --rulesets ./pmd-rules.xml -f text
 
   deployment:
-    name: Deployment
+    name: Deployment section
     runs-on: ubuntu-latest
     needs: [test]
     if: success() && contains('refs/heads/master', github.ref)
