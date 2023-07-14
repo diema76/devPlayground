@@ -38,7 +38,8 @@ jobs:
           run: |
             for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
               if [[ $file =~ "_Test" ]]; then
-                echo "$file" >> ${{ vars.TESTCLASSLIST }}
+               # echo "$file" >> ${{ vars.TESTCLASSLIST }}
+                ${{ vars.TESTCLASSLIST }} = "$ile"
               fi
             done
             echo "cat var TESTCLASSLIST"
