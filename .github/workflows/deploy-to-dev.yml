@@ -34,13 +34,16 @@ jobs:
           uses: tj-actions/changed-files@v37
 
         # NOTE: `since_last_remote_commit: true` is implied by default and falls back to the previous local commit.
+
+      
         - name: List all changed files
           run: |
             v_db_schema='DB_APPS_SCHEMA'
             for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
               if [[ $file =~ "_Test" ]]; then
-                echo "$file" >> ${{ vars.TESTCLASSLIST }}
-                $v_db_schema = 3 
+               # echo "$file" >> ${{ vars.TESTCLASSLIST }}
+                echo "$file" >> $v_db_schema
+                echo "$file" >> $vars.TESTCLASSLIST
               fi
             done
             echo "cat var TESTCLASSLIST"
