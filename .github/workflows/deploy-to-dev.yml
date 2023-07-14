@@ -43,7 +43,7 @@ jobs:
             done
             echo "cat var TESTCLASSLIST"
             echo ${{ vars.TESTCLASSLIST }}
-            
+          
 
   deployment:
     name: Deployment section
