@@ -44,7 +44,7 @@ jobs:
               fi
             done
             echo "cat TESTCLASSLIST"
-            echo $env:TESTCLASSLIST
+            echo "$env:TESTCLASSLIST"
             
 
   deployment:
