@@ -32,10 +32,11 @@ jobs:
           id: changed-files
           uses: tj-actions/changed-files@v37
   
+          
         # NOTE: `since_last_remote_commit: true` is implied by default and falls back to the previous local commit.
         - name: List all changed files
           run: |
-            $GITHUB_TESTCLASS = ''
+            echo "" > $GITHUB_TESTCLASS
             for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
               if [[ $file =~ "_Test" ]]; then
                 echo "$file" >> $GITHUB_TESTCLASS
