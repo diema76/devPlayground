@@ -36,14 +36,15 @@ jobs:
         # NOTE: `since_last_remote_commit: true` is implied by default and falls back to the previous local commit.
         - name: List all changed files
           run: |
-            echo "" > GITHUB_TESTCLASS
+            touch .testclass
             for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
               if [[ $file =~ "_Test" ]]; then
-                echo "$file" >> $GITHUB_TESTCLASS
+                echo "$file" >> .testclass
                 echo $file
               fi
             done
-            echo $GITHUB_TESTCLASS
+            echo "cat .testclass"
+            cat .testclass
 
   deployment:
     name: Deployment section
