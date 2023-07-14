@@ -33,14 +33,14 @@ jobs:
           uses: tj-actions/changed-files@v37
   
           env:
-            TESTCLASSLIST: null
+            TESTCLASSLIST: ''
 
         # NOTE: `since_last_remote_commit: true` is implied by default and falls back to the previous local commit.
         - name: List all changed files
           run: |
             for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
               if [[ $file =~ "_Test" ]]; then
-                $TESTCLASSLIST += "$file"
+                echo "$file" >> $TESTCLASSLIST
               fi
             done
             echo "cat TESTCLASSLIST"
