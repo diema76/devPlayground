@@ -40,11 +40,11 @@ jobs:
           run: |
             for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
               if [[ $file =~ "_Test" ]]; then
-                TESTCLASSLIST += "$file"
+                $TESTCLASSLIST += "$file"
               fi
             done
             echo "cat TESTCLASSLIST"
-            cat TESTCLASSLIST
+            echo $TESTCLASSLIST
             
 
   deployment:
