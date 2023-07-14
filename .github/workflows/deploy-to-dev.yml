@@ -39,7 +39,7 @@ jobs:
             for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
               if [[ $file =~ "_Test" ]]; then
                # echo "$file" >> ${{ vars.TESTCLASSLIST }}
-                echo "TESTCLASSLIST=$file" >> $TESTCLASSLIST
+                echo "::set-env name=TESTCLASSLIST::env value 02"
               fi
             done
             echo "cat var TESTCLASSLIST"
