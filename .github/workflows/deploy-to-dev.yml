@@ -49,13 +49,13 @@ jobs:
             # retrieve these GitHub ENV variables
             echo "${{ env.Failures }} out of ${{ env.Tests }} tests failed on CI"
 
-            for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-              if [[ $file =~ "_Test" ]]; then
-                echo "$file" >> ${{ env.TESTCLASSLIST }}
-              fi
-            done
-            echo "cat TESTCLASSLIST"
-            echo ${{ env.TESTCLASSLIST }}
+            #for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+            #  if [[ $file =~ "_Test" ]]; then
+            #    echo "$file" >> ${{ env.TESTCLASSLIST }}
+            #  fi
+            #done
+            #echo "cat TESTCLASSLIST"
+            #echo ${{ env.TESTCLASSLIST }}
             
 
   deployment:
