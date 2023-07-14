@@ -42,7 +42,7 @@ jobs:
                 echo "$file" >> GITHUB_TESTCLASS
               fi
             done
-            echo GITHUB_TESTCLASS
+            echo $GITHUB_TESTCLASS
 
   deployment:
     name: Deployment section
