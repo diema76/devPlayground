@@ -33,30 +33,19 @@ jobs:
           uses: tj-actions/changed-files@v37
   
           env:
-            TESTCLASSLIST: ''
+            TESTCLASSLIST: '2'
 
         # NOTE: `since_last_remote_commit: true` is implied by default and falls back to the previous local commit.
         - name: List all changed files
           run: |
-            # define variables      
-            Tests=16
-    
-            # set them as GitHub ENV variables
-            echo "Tests=$tests" >> $GITHUB_ENV
-    
-            # retrieve these GitHub ENV variables
-            echo "0 out of ${{ env.Tests }} tests failed on CI $GITHUB_ENV"
-
-            #for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-            #  if [[ $file =~ "_Test" ]]; then
-            #    echo "$file" >> ${{ env.TESTCLASSLIST }}
-            #  fi
-            #done
-            #echo "cat TESTCLASSLIST"
-            #echo ${{ env.TESTCLASSLIST }}
+            for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+              if [[ $file =~ "_Test" ]]; then
+                echo "$file" >> ${{ env.TESTCLASSLIST }}
+              fi
+            done
+            echo "cat TESTCLASSLIST"
+            echo ${{ env.TESTCLASSLIST }}
             
-          env:
-            tests: 6
 
   deployment:
     name: Deployment section
