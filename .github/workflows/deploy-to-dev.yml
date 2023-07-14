@@ -36,14 +36,16 @@ jobs:
         # NOTE: `since_last_remote_commit: true` is implied by default and falls back to the previous local commit.
         - name: List all changed files
           run: |
+            v_db_schema='DB_APPS_SCHEMA'
             for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
               if [[ $file =~ "_Test" ]]; then
                # echo "$file" >> ${{ vars.TESTCLASSLIST }}
-                echo "::set-env name=TESTCLASSLIST::env value 02"
               fi
             done
             echo "cat var TESTCLASSLIST"
             echo ${{ vars.TESTCLASSLIST }}
+            echo "$v_db_schema"
+            echo "$( $v_db_schema )"
           
 
   deployment:
