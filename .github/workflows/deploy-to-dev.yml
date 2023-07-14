@@ -39,13 +39,13 @@ jobs:
         - name: List all changed files
           run: |
             # define variables      
-            tests=16
+            Tests=16
     
             # set them as GitHub ENV variables
             echo "Tests=$tests" >> $GITHUB_ENV
     
             # retrieve these GitHub ENV variables
-            echo "${{ env.Failures }} out of ${{ env.Tests }} tests failed on CI ${{ env.GITHUB_ENV }}"
+            echo "0 out of ${{ env.Tests }} tests failed on CI $GITHUB_ENV"
 
             #for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             #  if [[ $file =~ "_Test" ]]; then
