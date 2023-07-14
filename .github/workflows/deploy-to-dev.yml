@@ -39,7 +39,7 @@ jobs:
             for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
               if [[ $file =~ "_Test" ]]; then
                # echo "$file" >> ${{ vars.TESTCLASSLIST }}
-                echo "TESTCLASSLIST=2"
+                echo "TESTCLASSLIST=$file" >> $GITHUB_ENV
               fi
             done
             echo "cat var TESTCLASSLIST"
