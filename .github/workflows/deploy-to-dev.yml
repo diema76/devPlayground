@@ -19,6 +19,10 @@ jobs:
     - run: npm install sfdx-cli -g 
     - uses: legetz/setup-pmd@v6.48
     - run: pmd -language apex --dir . --rulesets ./pmd-rules.xml -f text
+      name: List all changed files
+    - run: for file in ${{ steps.changed-directories.outputs.all_changed_and_modified_files }}; do
+             echo $file
+           done
 
   deployment:
     name: Deployment section
@@ -31,3 +35,4 @@ jobs:
     - run: echo "${{ secrets.SALESFORCE_JWT_SECRET_KEY }}" > server.key
     - run: sfdx force:auth:jwt:grant --client-id=${{ secrets.SALESFORCE_CONSUMER_KEY }} --jwt-key-file=server.key --username=${{ secrets.SALESFORCE_DEVHUB_USERNAME }} --set-default-dev-hub --alias devjwt
     - run: sfdx force:source:deploy --manifest=manifest/package.xml --testlevel=RunLocalTests -u ${{ secrets.SALESFORCE_DEVHUB_USERNAME }}
+  
