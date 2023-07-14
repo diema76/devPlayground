@@ -40,7 +40,8 @@ jobs:
           run: |
             for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
               if [[ $file =~ "_Test" ]]; then
-                echo "$file" >> ${{ env.TESTCLASSLIST }}
+                echo "$file" 
+                #>> ${{ env.TESTCLASSLIST }}
               fi
             done
             echo "cat TESTCLASSLIST"
