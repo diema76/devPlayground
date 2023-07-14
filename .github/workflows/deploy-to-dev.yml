@@ -46,6 +46,8 @@ jobs:
             done
             echo "cat TESTCLASSLIST"
             echo ${{ env.TESTCLASSLIST }}
+            echo $TESTCLASSLIST
+            echo ${{ vars.TESTCLASSLIST }}
             
 
   deployment:
