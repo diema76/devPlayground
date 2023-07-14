@@ -6,7 +6,8 @@ public class AccountController_Test {
         Account acc = new Account(Name = 'Pippo');  
         insert acc;  
     }
-    @isTest static void getAllActiveAccountsTest(){
+    @isTest static void getAllActiveAccountsTest()
+    {
         Test.startTest();
         List<Account> accs = AccountController.getAllActiveAccounts();
         System.assertEquals(1,accs.size(),'1 account records should be returned');
