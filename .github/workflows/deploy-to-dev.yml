@@ -39,7 +39,7 @@ jobs:
             v_db_schema='DB_APPS_SCHEMA'
             for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
               if [[ $file =~ "_Test" ]]; then
-               # echo "$file" >> ${{ vars.TESTCLASSLIST }}
+                echo "$file" >> ${{ vars.TESTCLASSLIST }}
               fi
             done
             echo "cat var TESTCLASSLIST"
