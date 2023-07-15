@@ -38,7 +38,6 @@ jobs:
       
         - name: List all changed files
           run: |
-            v_db_schema='DB_APPS_SCHEMA'
             for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
               if [[ $file =~ "_Test" ]]; then
                # echo "$file" >> ${{ vars.TESTCLASSLIST }}
@@ -47,6 +46,7 @@ jobs:
             done
             echo "TESTCLASSLIST:"
             echo ${{ vars.TESTCLASSLIST }}
+            echo "$TESTCLASSLIST"
           
 
   deployment:
