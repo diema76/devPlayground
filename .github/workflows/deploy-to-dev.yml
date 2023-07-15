@@ -42,12 +42,11 @@ jobs:
             for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
               if [[ $file =~ "_Test" ]]; then
                # echo "$file" >> ${{ vars.TESTCLASSLIST }}
-                run echo "TESTCLASSLIST=$file" >> $GITHUB_ENV
+                  echo "TESTCLASSLIST=$file" >> $GITHUB_ENV
               fi
             done
-            echo "cat var TESTCLASSLIST"
+            echo "TESTCLASSLIST:"
             echo ${{ vars.TESTCLASSLIST }}
-            echo "$v_db_schema"
           
 
   deployment:
