@@ -46,7 +46,7 @@ jobs:
             done
             echo "TESTCLASSLIST:"
             echo ${{ vars.TESTCLASSLIST }}
-            echo ${{ steps.changed-files.outputs.set-apex-list.CLASSLIST }}
+            echo ${{ steps.changed-files.set-apex-list.outputs.CLASSLIST }}
 
   deployment:
     name: Deployment section
