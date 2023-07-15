@@ -24,6 +24,8 @@ jobs:
       runs-on: ubuntu-latest
       name: Test changed-files
       environment: DevInt 
+      outputs:
+        CLASSLIST: none
       steps:
         - uses: actions/checkout@v3
           with:
@@ -46,7 +48,9 @@ jobs:
             done
             echo "TESTCLASSLIST:"
             echo ${{ vars.TESTCLASSLIST }}
-            echo ${{ steps.changed-files.set-apex-list.outputs.CLASSLIST }}
+            echo ${{ steps.changed-files.outcome }}
+            echo "CLASSLIST=all" >> $CLASSLIST
+            echo $CLASSLIST
 
   deployment:
     name: Deployment section
