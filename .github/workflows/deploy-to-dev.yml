@@ -35,14 +35,13 @@ jobs:
 
         # NOTE: `since_last_remote_commit: true` is implied by default and falls back to the previous local commit.
 
-      
+        # echo "$file" >> ${{ vars.TESTCLASSLIST }}
         - name: List all changed files
           id: set-apex-list
           run: |
             for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
               if [[ $file =~ "_Test" ]]; then
-               # echo "$file" >> ${{ vars.TESTCLASSLIST }}
-                  echo "CLASSLIST=$file" >> “$GITHUB_OUTPUT“
+                  echo "CLASSLIST=$file" >> $GITHUB_OUTPUT
               fi
             done
             echo "TESTCLASSLIST:"
