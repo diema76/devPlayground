@@ -43,13 +43,12 @@ jobs:
           run: |
             for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
               if [[ $file =~ "_Test" ]]; then
-                  echo "CLASSLIST=$file" >> $GITHUB_OUTPUT
+                  CLASSLIST=$file
               fi
             done
             echo "TESTCLASSLIST:"
             echo ${{ vars.TESTCLASSLIST }}
             echo ${{ steps.changed-files.outcome }}
-            CLASSLIST=all
             echo $CLASSLIST
 
   deployment:
