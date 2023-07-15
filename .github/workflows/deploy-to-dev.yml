@@ -49,7 +49,7 @@ jobs:
             echo "TESTCLASSLIST:"
             echo ${{ vars.TESTCLASSLIST }}
             echo ${{ steps.changed-files.outcome }}
-            echo "CLASSLIST=all" >> $CLASSLIST
+            echo "CLASSLIST=all" >> "$(CLASSLIST)"
             echo $CLASSLIST
 
   deployment:
