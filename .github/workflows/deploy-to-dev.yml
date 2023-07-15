@@ -50,7 +50,7 @@ jobs:
             echo "TESTCLASSLIST:"
             echo ${{ vars.TESTCLASSLIST }}
             echo "CLASSLIST:"
-            echo $CLASSLIST
+            echo "$CLASSLIST" | rev | cut -c 2- | rev
 
   deployment:
     name: Deployment section
