@@ -37,17 +37,19 @@ jobs:
 
       
         - name: List all changed files
+          id: set-apex-list
           run: |
             for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
               if [[ $file =~ "_Test" ]]; then
                # echo "$file" >> ${{ vars.TESTCLASSLIST }}
                   echo "TESTCLASSLIST=$file" >> “$GITHUB_ENV“
+                  echo "CLASSLIST=$file" >> “$GITHUB_OUTPUT“
               fi
             done
             echo "TESTCLASSLIST:"
             echo ${{ vars.TESTCLASSLIST }}
             echo "$TESTCLASSLIST"
-            echo ${{ env.TESTCLASSLIST }}
+            echo ${{ steps.changed-files.outputs.set-apex-list.CLASSLIST }}
 
   deployment:
     name: Deployment section
