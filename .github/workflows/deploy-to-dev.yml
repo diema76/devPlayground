@@ -40,17 +40,15 @@ jobs:
           id: set-apex-list
           run: |
             CLASSLIST=''
-            FILETMP=''
             for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
               if [[ $file =~ "_Test" ]]; then
-                  $FILETMP = $file | sed 's/\.cls$//' 
-                  CLASSLIST+="$FILETMP,"
+                  CLASSLIST+="$file,"
               fi
             done
             echo "TESTCLASSLIST:"
             echo ${{ vars.TESTCLASSLIST }}
             echo "CLASSLIST:"
-            echo "$CLASSLIST" | rev | cut -c 2- | rev
+            echo "$CLASSLIST" | sed 's/\.cls//g' | sed 's/\,$//'
 
   deployment:
     name: Deployment section
