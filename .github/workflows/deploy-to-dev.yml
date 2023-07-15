@@ -43,7 +43,7 @@ jobs:
             FILETMP=''
             for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
               if [[ $file =~ "_Test" ]]; then
-                  $FILETMP = $file | sed 's/\.cls$//'
+                  $FILETMP = $file | sed 's/\.cls$//' 
                   CLASSLIST+="$FILETMP,"
               fi
             done
