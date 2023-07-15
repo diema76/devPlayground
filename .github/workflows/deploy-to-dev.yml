@@ -41,14 +41,15 @@ jobs:
         - name: List all changed files
           id: set-apex-list
           run: |
+            CLASSLIST=''
             for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
               if [[ $file =~ "_Test" ]]; then
-                  CLASSLIST=$file
+                  CLASSLIST+="$file,"
               fi
             done
             echo "TESTCLASSLIST:"
             echo ${{ vars.TESTCLASSLIST }}
-            echo ${{ steps.changed-files.outcome }}
+            echo "CLASSLIST:"
             echo $CLASSLIST
 
   deployment:
