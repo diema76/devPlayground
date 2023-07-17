@@ -50,11 +50,12 @@ jobs:
             echo ${{ vars.TESTCLASSLIST }}
             echo "CLASSLIST:"
             echo "$CLASSLIST" | sed 's/\,$//'
-            - run: npm install sfdx-cli -g 
-            - run: echo "${{ secrets.SALESFORCE_JWT_SECRET_KEY }}" > server.key
-            - run: sfdx force:auth:jwt:grant --client-id=${{ secrets.SALESFORCE_CONSUMER_KEY }} --jwt-key-file=server.key --username=${{ secrets.SALESFORCE_DEVHUB_USERNAME }} --set-default-dev-hub --alias devjwt        
-            sfdx force:apex:test:run --classnames "`echo "$CLASSLIST" | sed 's/\,$//'`" --synchronous --resultformat human --loglevel error
-
+            if [[ $CLASSLIST != '' ]]; then
+             npm install sfdx-cli -g 
+             echo "${{ secrets.SALESFORCE_JWT_SECRET_KEY }}" > server.key
+             sfdx force:auth:jwt:grant --client-id=${{ secrets.SALESFORCE_CONSUMER_KEY }} --jwt-key-file=server.key --username=${{ secrets.SALESFORCE_DEVHUB_USERNAME }} --set-default-dev-hub --alias devjwt        
+             sfdx force:apex:test:run --classnames "`echo "$CLASSLIST" | sed 's/\,$//'`" --synchronous --resultformat human --loglevel error
+            fi
   deployment:
     name: Deployment section
     runs-on: ubuntu-latest
