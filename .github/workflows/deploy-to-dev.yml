@@ -42,7 +42,7 @@ jobs:
             CLASSLIST=''
             for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
               if [[ $file =~ "_Test" ]]; then
-                  tmpfile = $file | sed -e 's/.*classes\/\(.*\)\.cls/\1/'
+                  tmpfile = $($file | sed -e 's/.*classes\/\(.*\)\.cls/\1/')
                   CLASSLIST+="$tmpfile,"
               fi
             done
