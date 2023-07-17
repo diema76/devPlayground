@@ -42,13 +42,14 @@ jobs:
             CLASSLIST=''
             for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
               if [[ $file =~ "_Test" ]]; then
-                  CLASSLIST+="$file,"
+                  $tmpfile = $file | sed -e 's/.*classes\/\(.*\)\.cls/\1/'
+                  CLASSLIST+="$tmpfile,"
               fi
             done
             echo "TESTCLASSLIST:"
             echo ${{ vars.TESTCLASSLIST }}
             echo "CLASSLIST:"
-            echo "$CLASSLIST" | sed 's/\.cls//g' | sed 's/\,$//'
+            echo "$CLASSLIST" | sed 's/\,$//'
 
   deployment:
     name: Deployment section
