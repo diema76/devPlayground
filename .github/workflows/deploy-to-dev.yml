@@ -54,7 +54,7 @@ jobs:
              npm install sfdx-cli -g 
              echo "${{ secrets.SALESFORCE_JWT_SECRET_KEY }}" > server.key
              sfdx force:auth:jwt:grant --client-id=${{ secrets.SALESFORCE_CONSUMER_KEY }} --jwt-key-file=server.key --username=${{ secrets.SALESFORCE_DEVHUB_USERNAME }} --set-default-dev-hub --alias devjwt        
-             sfdx force:apex:test:run -l RunLocalTests --class-names "`echo "$CLASSLIST" | sed 's/\,$//'`" --synchronous --resultformat human --loglevel error -u ${{ secrets.SALESFORCE_DEVHUB_USERNAME }}
+             sfdx force:apex:test:run -l RunSpecifiedTests --class-names "`echo "$CLASSLIST" | sed 's/\,$//'`" --synchronous --result-format human --loglevel error -u ${{ secrets.SALESFORCE_DEVHUB_USERNAME }}
             fi
   deployment:
     name: Deployment section
