@@ -22,7 +22,7 @@ jobs:
 
   changed_files:
       runs-on: ubuntu-latest
-      name: Test changed-files
+      name: Check Apex Test Class
       environment: DevInt 
       outputs:
         CLASSLIST: none
@@ -56,6 +56,7 @@ jobs:
              sfdx force:auth:jwt:grant --client-id=${{ secrets.SALESFORCE_CONSUMER_KEY }} --jwt-key-file=server.key --username=${{ secrets.SALESFORCE_DEVHUB_USERNAME }} --set-default-dev-hub --alias devjwt        
              sfdx force:apex:test:run -l RunSpecifiedTests --class-names "`echo "$CLASSLIST" | sed 's/\,$//'`" --synchronous --result-format human --loglevel error -u ${{ secrets.SALESFORCE_DEVHUB_USERNAME }}
             fi
+
   deployment:
     name: Deployment section
     runs-on: ubuntu-latest
