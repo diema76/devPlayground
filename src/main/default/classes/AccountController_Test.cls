@@ -3,7 +3,7 @@ public class AccountController_Test {
             
     @TestSetup
     static void makeData(){
-        Account acc = new Account(Name = 'Pippo', Active__c = true);  
+        Account acc = new Account(Name = 'Pippo', Active__c = 'Yes');  
         insert acc;  
     }
     @isTest static void getAllActiveAccountsTest()
