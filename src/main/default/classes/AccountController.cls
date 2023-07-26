@@ -4,7 +4,6 @@
   * @description  Account controller
 */
 public without sharing class AccountController {
-
   /**
   * @author       Diego Magrì
   * @date         14/07/2023
