@@ -10,13 +10,13 @@ on:
 
 jobs:
   test:
-    name: Test section
+    name: Check PMD section
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
     - run: echo "🐧 GitHub Action running on ${{ runner.os }}"
     - run: echo "🔎 Retrieving ${{ github.ref }} from ${{ github.repository }}."
-    - run: npm install sfdx-cli -g 
+    - run: npm install @salesforce/cli --global
     - uses: legetz/setup-pmd@v6.48
     - run: pmd -language apex --dir . --rulesets ./pmd-rules.xml -f text
 
@@ -51,7 +51,7 @@ jobs:
             echo "CLASSLIST:"
             echo "$CLASSLIST" | sed 's/\,$//'
             if [[ $CLASSLIST != '' ]]; then
-             npm install sfdx-cli -g 
+             npm install @salesforce/cli --global
              echo "${{ secrets.SALESFORCE_JWT_SECRET_KEY }}" > server.key
              sfdx force:auth:jwt:grant --client-id=${{ secrets.SALESFORCE_CONSUMER_KEY }} --jwt-key-file=server.key --username=${{ secrets.SALESFORCE_DEVHUB_USERNAME }} --set-default-dev-hub --alias devjwt        
              sfdx force:apex:test:run -l RunSpecifiedTests --class-names "`echo "$CLASSLIST" | sed 's/\,$//'`" --synchronous --result-format human --loglevel error -u ${{ secrets.SALESFORCE_DEVHUB_USERNAME }}
@@ -64,7 +64,7 @@ jobs:
     if: success() && contains('refs/heads/master', github.ref)
     steps:
     - uses: actions/checkout@v3
-    - run: npm install sfdx-cli -g 
+    - run: npm install @salesforce/cli --global 
     - run: echo "${{ secrets.SALESFORCE_JWT_SECRET_KEY }}" > server.key
     - run: sfdx force:auth:jwt:grant --client-id=${{ secrets.SALESFORCE_CONSUMER_KEY }} --jwt-key-file=server.key --username=${{ secrets.SALESFORCE_DEVHUB_USERNAME }} --set-default-dev-hub --alias devjwt
     - run: sfdx force:source:deploy --manifest=manifest/package.xml --testlevel=RunLocalTests -u ${{ secrets.SALESFORCE_DEVHUB_USERNAME }}
