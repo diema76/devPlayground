@@ -1,0 +1,7 @@
+.*
+manifest/
+
+jest.config.js
+package.json
+pmd-rules.xml
+sfdx-project.json
